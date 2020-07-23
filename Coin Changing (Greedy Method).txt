@@ -1,0 +1,44 @@
+#include<stdio.h>
+int main()
+{
+    int taka[100];
+    int n,i,j,change,ans[100];
+    printf("Total number of coins: ");
+    scanf("%d",&n);
+    printf("I have Coins for change: ");
+    for(i = 0; i<n; i++)
+    {
+        scanf("%d",&taka[i]);
+    }
+    printf("Change for: ");
+    scanf("%d",&change);
+    int min_count;
+    min_count  = findMin(taka,n,change);
+
+    return 0;
+}
+
+void findMin(int taka[], int n, int change)
+{
+    int i, c = 0,ans[100];
+    for(i=n-1;i>=0;i--)
+    {
+        while(change>=taka[i])
+        {
+          change = change-taka[i];
+          ans[c] = taka[i];
+          c++;
+        }
+        if(change==0)
+            break;
+    }
+    printf("Coins are: ");
+    for(i=0;i<c;i++)
+    {
+        printf("%d ",ans[i]);
+    }
+    printf("\n");
+    printf("Total Coin Needed: %d\n",c);
+
+}
+
